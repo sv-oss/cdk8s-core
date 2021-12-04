@@ -3,7 +3,6 @@
 !/.projen/tasks.json
 !/.projen/deps.json
 !/.github/workflows/pull-request-lint.yml
-!/.github/workflows/auto-approve.yml
 !/.github/workflows/stale.yml
 !/package.json
 !/LICENSE
@@ -49,6 +48,5 @@ junit.xml
 !/.eslintrc.json
 .jsii
 tsconfig.json
-!/API.md
 !/src/_loadurl.js
 !/.github/workflows/upgrade-main.yml

@@ -1,9 +1,9 @@
 {
-  "name": "cdk8s",
+  "name": "@sv-oss/cdk8s",
   "description": "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cdk8s-team/cdk8s-core.git"
+    "url": "https://github.com/sv-oss/cdk8s-core.git"
   },
   "scripts": {
     "build": "npx projen build",
@@ -12,24 +12,20 @@
     "compat": "npx projen compat",
     "compile": "npx projen compile",
     "default": "npx projen default",
-    "docgen": "npx projen docgen",
     "eslint": "npx projen eslint",
     "install-helm": "npx projen install-helm",
     "package": "npx projen package",
     "post-compile": "npx projen post-compile",
     "pre-compile": "npx projen pre-compile",
     "publish:github": "npx projen publish:github",
-    "publish:golang": "npx projen publish:golang",
-    "publish:maven": "npx projen publish:maven",
     "publish:npm": "npx projen publish:npm",
-    "publish:nuget": "npx projen publish:nuget",
-    "publish:pypi": "npx projen publish:pypi",
     "release": "npx projen release",
     "test": "npx projen test",
     "test:update": "npx projen test:update",
     "test:watch": "npx projen test:watch",
     "unbump": "npx projen unbump",
     "upgrade": "npx projen upgrade",
+    "upgrade-projen": "npx projen upgrade-projen",
     "watch": "npx projen watch",
     "projen": "npx projen"
   },
@@ -44,7 +40,7 @@
     "@types/node": "^12.13.0",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
-    "constructs": "^3.3.161",
+    "constructs": "10.0.0",
     "eslint": "^7.32.0",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
@@ -53,7 +49,6 @@
     "jest-junit": "^12",
     "jsii": "^1.46.0",
     "jsii-diff": "^1.46.0",
-    "jsii-docgen": "^3.8.31",
     "jsii-pacmak": "^1.46.0",
     "json-schema": "^0.4.0",
     "json-schema-to-typescript": "^10.1.5",
@@ -64,7 +59,7 @@
     "typescript": "^4.5.2"
   },
   "peerDependencies": {
-    "constructs": "^3.3.161"
+    "constructs": "^10.0.0"
   },
   "dependencies": {
     "fast-json-patch": "^2.2.1",
@@ -90,6 +85,9 @@
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "version": "0.0.0",
   "jest": {
     "testMatch": [
@@ -134,26 +132,7 @@
   "stability": "stable",
   "jsii": {
     "outdir": "dist",
-    "targets": {
-      "java": {
-        "package": "org.cdk8s",
-        "maven": {
-          "groupId": "org.cdk8s",
-          "artifactId": "cdk8s"
-        }
-      },
-      "python": {
-        "distName": "cdk8s",
-        "module": "cdk8s"
-      },
-      "dotnet": {
-        "namespace": "Org.Cdk8s",
-        "packageId": "Org.Cdk8s"
-      },
-      "go": {
-        "moduleName": "github.com/cdk8s-team/cdk8s-core-go"
-      }
-    },
+    "targets": {},
     "tsc": {
       "outDir": "lib",
       "rootDir": "src"

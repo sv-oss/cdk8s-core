@@ -194,19 +194,28 @@ export class App extends Construct {
 function validate(app: App) {
 
   // Note this is a copy-paste of https://github.com/aws/constructs/blob/master/lib/construct.ts#L438.
-  const errors = Node.of(app).validate();
+  const errors = app.node.findAll().map((n) => {
+    return { path: n.node.path, errors: n.node.validate() };
+  }).filter(verr => verr.errors.length > 0);
+
   if (errors.length > 0) {
-    const errorList = errors.map(e => `[${Node.of(e.source).path}] ${e.message}`).join('\n  ');
+    const errorList = errors.map(e => `[${e.path}] ${e.errors.join(',')}`).join('\n  ');
     throw new Error(`Validation failed with the following errors:\n  ${errorList}`);
   }
-
 }
 
 function resolveDependencies(app: App) {
 
   let hasDependantCharts = false;
 
-  for (const dep of Node.of(app).dependencies) {
+  const deps = app.node.findAll().map(n => n.node.dependencies.map(ndep => {
+    return {
+      source: n,
+      target: ndep,
+    };
+  })).flat();
+
+  for (const dep of deps) {
 
     // create explicit api object dependencies from implicit construct dependencies
     const targetApiObjects = Node.of(dep.target).findAll().filter(c => c instanceof ApiObject);
